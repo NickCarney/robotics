@@ -3,7 +3,7 @@ import time
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy as np
-iterations = 100
+iterations = 1000
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 p.setGravity(0,0,-9.8)
@@ -23,7 +23,13 @@ for i in range(iterations):
     bodyIndex = robotId,
     jointName = b'Torso_BackLeg',
     controlMode = p.POSITION_CONTROL,
-    targetPosition = 0.0,
+    targetPosition = -np.pi/4,
+    maxForce = 500)
+    pyrosim.Set_Motor_For_Joint(
+    bodyIndex = robotId,
+    jointName = b'Torso_FrontLeg',
+    controlMode = p.POSITION_CONTROL,
+    targetPosition = np.pi/4,
     maxForce = 500)
     #print(frontLegSensorValues)
 np.save('backLegSensorData.npy',backLegSensorValues)
