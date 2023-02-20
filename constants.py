@@ -1,4 +1,5 @@
 import numpy as np
+import pybullet as p
 iterations = 1000
 blAmplitude = np.pi/4
 blFrequency = 12
@@ -10,3 +11,4 @@ zero = 0
 gravity = -9.8
 maxForce = 127
 sleep = 1/60
+
