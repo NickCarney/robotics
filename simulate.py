@@ -4,25 +4,25 @@ import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy as np
 import random as rand
-iterations = 1000
-amplitude = np.pi/4   
-frequency = 1
-phaseOffset = 0
+import constants as c
+
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
-p.setGravity(0,0,-9.8)
+p.setGravity(c.zero,c.zero,c.gravity)
 planeId = p.loadURDF("plane.urdf")
 robotId = p.loadURDF("body.urdf")
 p.loadSDF("world.sdf")
 pyrosim.Prepare_To_Simulate(robotId)
-backLegSensorValues = np.zeros(iterations)
-frontLegSensorValues = np.zeros(iterations)
-maxVal = amplitude * np.sin(frequency*iterations + phaseOffset)
-targetAngles = np.sin(np.linspace(0, 2*np.pi, iterations)*frequency+phaseOffset)
-np.save('data/targetAnglesData.npy',targetAngles)
-exit()
-for i in range(iterations):
-    time.sleep(1/60)
+backLegSensorValues = np.zeros(c.iterations)
+frontLegSensorValues = np.zeros(c.iterations)
+#maxVal = amplitude * np.sin(frequency*iterations + phaseOffset)
+blTargetAngles = c.blAmplitude*(np.sin((np.linspace(c.zero, 2*np.pi, c.iterations)*c.blFrequency)+c.blPhaseOffset))
+flTargetAngles = c.flAmplitude*(np.sin((np.linspace(c.zero, 2*np.pi, c.iterations)*c.flFrequency)+c.flPhaseOffset))
+np.save('data/blTargetAnglesData.npy',blTargetAngles)
+np.save('data/flTargetAnglesData.npy',flTargetAngles)
+#exit()
+for i in range(c.iterations):
+    time.sleep(c.sleep)
     #print(i)
     p.stepSimulation()
     #targetAngles[i] = amplitude * np.sin(frequency*i + phaseOffset)
@@ -32,14 +32,14 @@ for i in range(iterations):
     bodyIndex = robotId,
     jointName = b'Torso_BackLeg',
     controlMode = p.POSITION_CONTROL,
-    targetPosition = np.sin(targetAngles[i]),#rand.uniform(-np.pi/2,np.pi/2),
-    maxForce = 127)
+    targetPosition = np.sin(blTargetAngles[i]),
+    maxForce = c.maxForce)
     pyrosim.Set_Motor_For_Joint(
     bodyIndex = robotId,
     jointName = b'Torso_FrontLeg',
     controlMode = p.POSITION_CONTROL,
-    targetPosition = np.sin(targetAngles[i]),#rand.uniform(-np.pi/2,np.pi/2),
-    maxForce = 127)
+    targetPosition = np.sin(flTargetAngles[i]),
+    maxForce = c.maxForce)
     #print(frontLegSensorValues)
 np.save('backLegSensorData.npy',backLegSensorValues)
 np.save('frontLegSensorData.npy',frontLegSensorValues)
