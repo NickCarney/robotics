@@ -16,8 +16,7 @@ class SIMULATION:
         p.setGravity(c.zero,c.zero,c.gravity)
         self.world = WORLD()
         self.robot = ROBOT()
-        self.sensor = SENSOR()
-        self.motor = MOTOR()
+        
         pyrosim.Prepare_To_Simulate(self.robot.robotId)
         self.robot.Prepare_To_Sense()
     def __del__(self):
@@ -28,10 +27,10 @@ class SIMULATION:
             time.sleep(c.sleep)
             #print(i)
             p.stepSimulation()
-            self.robot.Sense()
+            self.robot.Prepare_To_Sense
+            self.robot.Sense(i)
             #targetAngles[i] = amplitude * np.sin(frequency*i + phaseOffset)
-            #c.backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-            #c.frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
+            
             pyrosim.Set_Motor_For_Joint(
             bodyIndex = self.robot.robotId,
             jointName = b'Torso_BackLeg',
