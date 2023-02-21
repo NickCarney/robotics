@@ -16,33 +16,23 @@ class SIMULATION:
         p.setGravity(c.zero,c.zero,c.gravity)
         self.world = WORLD()
         self.robot = ROBOT()
+        #self.sensor = SENSOR()
         
-        pyrosim.Prepare_To_Simulate(self.robot.robotId)
-        self.robot.Prepare_To_Sense()
-    def __del__(self):
-        p.disconnect()      
     def Run(self):
         for i in range(c.iterations):
             print(i)
             time.sleep(c.sleep)
             #print(i)
             p.stepSimulation()
-            self.robot.Prepare_To_Sense
+            #self.robot.Prepare_To_Sense()
             self.robot.Sense(i)
+            self.robot.Act(i)
             #targetAngles[i] = amplitude * np.sin(frequency*i + phaseOffset)
             
-            pyrosim.Set_Motor_For_Joint(
-            bodyIndex = self.robot.robotId,
-            jointName = b'Torso_BackLeg',
-            controlMode = p.POSITION_CONTROL,
-            targetPosition = np.sin(c.blTargetAngles[i]),
-            maxForce = c.maxForce)
-            pyrosim.Set_Motor_For_Joint(
-            bodyIndex = self.robot.robotId,
-            jointName = b'Torso_FrontLeg',
-            controlMode = p.POSITION_CONTROL,
-            targetPosition = np.sin(c.flTargetAngles[i]),
-            maxForce = c.maxForce)
+            
             #print(frontLegSensorValues)
-
+    def __del__(self):     
+        self.robot.Save_Values()
+        #self.sensor.Save_Values()
+        p.disconnect()
             
