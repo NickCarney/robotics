@@ -4,6 +4,8 @@ import pybullet_data
 import pyrosim.pyrosim as pyrosim
 from world import WORLD
 from robot import ROBOT
+from sensor import SENSOR
+from motor import MOTOR
 import numpy as np
 import time
 class SIMULATION:
@@ -14,7 +16,10 @@ class SIMULATION:
         p.setGravity(c.zero,c.zero,c.gravity)
         self.world = WORLD()
         self.robot = ROBOT()
+        self.sensor = SENSOR()
+        self.motor = MOTOR()
         pyrosim.Prepare_To_Simulate(self.robot.robotId)
+        self.robot.Prepare_To_Sense()
     def __del__(self):
         p.disconnect()      
     def Run(self):
@@ -23,9 +28,10 @@ class SIMULATION:
             time.sleep(c.sleep)
             #print(i)
             p.stepSimulation()
+            self.robot.Sense()
             #targetAngles[i] = amplitude * np.sin(frequency*i + phaseOffset)
-            c.backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-            c.frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
+            #c.backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
+            #c.frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
             pyrosim.Set_Motor_For_Joint(
             bodyIndex = self.robot.robotId,
             jointName = b'Torso_BackLeg',
