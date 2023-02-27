@@ -32,6 +32,7 @@ class ROBOT:
         np.save('data/motorValues.npy',self.motors)
         # np.save('data/flTargetAnglesData.npy',flTargetAngles)
     def Think(self):
+        self.nn.Update()
         self.nn.Print()
 
         
