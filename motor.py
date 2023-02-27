@@ -18,11 +18,11 @@ class MOTOR:
         elif self.jointName == b'Torso_FrontLeg':
             self.motorValues = self.amplitude*(np.sin((np.linspace(c.zero, 2*np.pi, c.iterations)*self.frequency*.5)+self.offset))
         
-    def Set_Value(self,robotId, t):        
+    def Set_Value(self,robotId, desiredAngle):        
         pyrosim.Set_Motor_For_Joint(
         bodyIndex = robotId,
         jointName = self.jointName,
         controlMode = p.POSITION_CONTROL,
-        targetPosition = self.motorValues[t],
+        targetPosition = self.motorValues[desiredAngle],
         maxForce = c.maxForce)
         

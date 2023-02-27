@@ -159,7 +159,9 @@ def Set_Motor_For_Joint(bodyIndex,jointName,controlMode,targetPosition,maxForce)
 
         bodyIndex      = bodyIndex,
 
-        jointIndex     = jointNamesToIndices[jointName],
+        #jointIndex     = jointNamesToIndices[jointName],
+
+        jointIndex = jointNamesToIndices[jointName.encode('ASCII')],
 
         controlMode    = controlMode,
 
