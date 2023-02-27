@@ -26,6 +26,7 @@ class SIMULATION:
             p.stepSimulation()
             #self.robot.Prepare_To_Sense()
             self.robot.Sense(i)
+            self.robot.Think()
             self.robot.Act(i)
             #targetAngles[i] = amplitude * np.sin(frequency*i + phaseOffset)
             
