@@ -43,8 +43,10 @@ class NEURAL_NETWORK:
         return self.neurons.keys()
     
     def Is_Motor_Neuron(self, neuronName):
-        
-        return self.neurons[neuronName].Is_Motor_Neuron()
+        if self.neurons[neuronName].Is_Motor_Neuron():
+            return True
+        else:
+            return False
 
     def Get_Motor_Neurons_Joint(self, neuronName):
         neuron = self.neurons[neuronName]

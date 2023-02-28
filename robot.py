@@ -33,8 +33,6 @@ class ROBOT:
                 print(neuronName,jointName, desiredAngle)
                 for i in self.motors:
                     self.motors[i].Set_Value(self.robotId,desiredAngle)
-        #for i in self.motors:
-            #self.motors[i].Set_Value(self.robotId,t)
     def Save_Values(self):
         np.save('data/motorValues.npy',self.motors)
         # np.save('data/flTargetAnglesData.npy',flTargetAngles)
