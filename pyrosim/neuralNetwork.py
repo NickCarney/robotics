@@ -6,8 +6,6 @@ class NEURAL_NETWORK:
 
     def __init__(self,nndfFileName):
 
-        #self.neuron = NEURON()
-
         self.neurons = {}
 
         self.synapses = {}
@@ -19,9 +17,6 @@ class NEURAL_NETWORK:
             self.Digest(line)
 
         f.close()
-        
-
-        
 
     def Print(self):
 
@@ -32,15 +27,15 @@ class NEURAL_NETWORK:
         self.Print_Motor_Neuron_Values()
 
         print("")
+    
     def Update(self):
-        for keys in self.neurons:
-            if self.neurons[keys].Is_Sensor_Neuron():
-                self.neurons[keys].Update_Sensor_Neuron()
+        for neuronName in self.neurons:
+            if self.neurons[neuronName].Is_Sensor_Neuron():
+                self.neurons[neuronName].Update_Sensor_Neuron()
             else:
-                self.neurons[keys].Update_Hidden_Or_Motor_Neuron(self.neurons,self.synapses)
+                self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron(self.neurons,self.synapses)
     
     def Get_Neuron_Names(self):
-        
         return self.neurons.keys()
     
     def Is_Motor_Neuron(self, neuronName):
@@ -48,13 +43,15 @@ class NEURAL_NETWORK:
             return True
         else:
             return False
-
+        
     def Get_Motor_Neurons_Joint(self, neuronName):
         neuron = self.neurons[neuronName]
         return neuron.Get_Joint_Name()
-
+    
     def Get_Value_Of(self, neuronName):
-        return self.neurons[neuronName].Get_Value()
+        neuron = self.neurons[neuronName]
+        return neuron.Get_Value()
+        
 
 # ---------------- Private methods --------------------------------------
 
