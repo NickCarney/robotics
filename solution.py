@@ -2,7 +2,6 @@ import numpy as np
 import pyrosim.pyrosim as pyrosim
 import constants as c
 import os
-import simulate
 import random
 class SOLUTION:
 
@@ -11,11 +10,11 @@ class SOLUTION:
         self.weights = np.array([[np.random.rand(),np.random.rand()],[np.random.rand(),np.random.rand()],[np.random.rand(),np.random.rand()]])
         self.weights = self.weights * 2 - 1
         
-    def Evaluate(self):
+    def Evaluate(self,directOrGUI):
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
-        os.system('python3 simulate.py')
+        os.system("python3 simulate.py "+directOrGUI)
         f = open('fitness.txt','r')
         self.fitness = float(f.read())
         f.close()
