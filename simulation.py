@@ -19,7 +19,7 @@ class SIMULATION:
         
     def Run(self):
         
-        for x in range(1000):
+        for x in range(100):
             
             p.stepSimulation()
             
@@ -34,3 +34,6 @@ class SIMULATION:
     def __del__(self):
 
         p.disconnect()
+
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
