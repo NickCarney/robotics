@@ -1,6 +1,6 @@
 import numpy as np
 import pybullet as p
-iterations = 2
+numberOfGenerations = 10
 amplitude = np.pi/4
 frequency = 12
 offset = 0
