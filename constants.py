@@ -10,6 +10,13 @@ maxForce = 127
 sleep = 1/240
 array = np.linspace(0, 360, 1000)
 
+length = 1
+width = 1
+height = 1
+x = 0.0
+y= 0.0
+z = 1.5
+
 backLegAmplitude = np.pi/4
 backLegFrequency = 4
 backLegPhaseOffset = 0
