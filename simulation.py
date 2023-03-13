@@ -19,7 +19,7 @@ class SIMULATION:
         
     def Run(self):
         
-        for x in range(c.iterations):
+        for x in range(100):
             
             p.stepSimulation()
             
