@@ -5,10 +5,13 @@ from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
     
     def __init__(self):
+        self.nextAvailableID = 0
         self.parents = dict()
         for i in range(c.populationSize):
-            self.parents[i] = SOLUTION()
+            self.parents[i] = SOLUTION(self.nextAvailableID)
+            self.nextAvailableID+=1
         print(self.parents)
+        
 
     def Evolve(self):
         for i in range(c.populationSize):
