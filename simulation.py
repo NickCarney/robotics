@@ -20,6 +20,7 @@ class SIMULATION:
         p.setGravity(0,0,-9.8)
         self.world = WORLD()
         self.robot = ROBOT()
+        self.directOrGUI = directOrGui
         
         
     def Run(self):
@@ -33,8 +34,8 @@ class SIMULATION:
             self.robot.Think()
             
             self.robot.Act(x)
-        
-            time.sleep(1/240)
+            if(self.directOrGUI=="GUI"):
+                time.sleep(1/240)
             
     # def __del__(self):
 
