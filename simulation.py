@@ -21,6 +21,7 @@ class SIMULATION:
         self.world = WORLD()
         self.robot = ROBOT(solutionID)
         self.directOrGUI = directOrGui
+        self.solutionID = solutionID
 
         
         
@@ -43,4 +44,4 @@ class SIMULATION:
     #     p.disconnect()
 
     def Get_Fitness(self):
-        self.robot.Get_Fitness()
+        self.robot.Get_Fitness(self.solutionID)

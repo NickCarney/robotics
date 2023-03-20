@@ -12,9 +12,9 @@ class ROBOT:
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
         fileToLoad = "brain"+str(solutionID)+".nndf"
-        print(fileToLoad)
         self.nn = NEURAL_NETWORK(fileToLoad)
-        os.system("del "+fileToLoad)
+        os.system("rm "+fileToLoad)
+        #os.system("rm brain"+str(solutionID)+".nndf")
     
     def Prepare_To_Sense(self):
         self.sensors = {}
@@ -43,11 +43,12 @@ class ROBOT:
         self.nn.Update()
         self.nn.Print()
 
-    def Get_Fitness(self):
+    def Get_Fitness(self,solutionID):
         stateOfLink0 = p.getLinkState(self.robotId,0)
         positionOfLinkZero = stateOfLink0[0]
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        f = open('fitness.txt','w')
+        f = open('tmp'+str(solutionID)+'.txt','w')
+        os.system('mv tmp'+str(solutionID)+'.txt fitness'+str(solutionID)+'.txt')
         f.write(str(xCoordinateOfLinkZero))
         f.close()
         
