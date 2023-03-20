@@ -17,6 +17,8 @@ x = 0.0
 y= 0.0
 z = 1.5
 
+populationSize = 2
+
 backLegAmplitude = np.pi/4
 backLegFrequency = 4
 backLegPhaseOffset = 0
