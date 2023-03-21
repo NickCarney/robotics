@@ -23,14 +23,24 @@ class SOLUTION:
         os.system("python3 simulate.py " + directOrGUI + " "+str(self.myId)+" &")
 
     def Wait_For_Simulation_To_End(self):
-        fitnessFileName = 'fitness'+str(self.myId)+'.txt'
-        while not os.path.exists(fitnessFileName):
-            time.sleep(0.01) 
-        f = open(fitnessFileName,'r')
+        # fitnessFileName = 'fitness'+str(self.myId)+'.txt'
+        # while not os.path.exists(fitnessFileName):
+        #     time.sleep(0.01) 
+        # f = open(fitnessFileName,'r')
+        # print(fitnessFileName)
+        # self.fitness = float(f.read())
+        # #print(self.fitness)
+        # f.close()
+        # os.system('rm '+fitnessFileName)
+
+        while not os.path.exists("fitness" + str(self.myId) + ".txt"):
+
+            time.sleep(0.01)
+        
+        f = open("fitness" + str(self.myId) + ".txt", "r")
         self.fitness = float(f.read())
-        print(self.fitness)
         f.close()
-        os.system('rm '+fitnessFileName)
+        os.system("rm fitness" + str(self.myId) + ".txt")
 
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
@@ -70,7 +80,7 @@ class SOLUTION:
         randomColumn = random.randint(0,1)
         self.weights[randomRow][randomColumn] = random.random()*2-1
 
-    def setId(self,nextAvailableID):
+    def Set_ID(self,nextAvailableID):
         self.myId = nextAvailableID
         nextAvailableID+=1
 
