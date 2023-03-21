@@ -17,10 +17,7 @@ class PARALLEL_HILL_CLIMBER:
         
 
     def Evolve(self):
-        for i in range(c.populationSize):
-            self.parents[i].Start_Simulation('GUI')
-        for i in range(c.populationSize):
-            self.parents[i].Wait_For_Simulation_To_End()
+        self.Evaluate(self.parents)
         for i in range(c.numberOfGenerations):
             self.Evolve_For_One_Generation()
 
@@ -32,8 +29,9 @@ class PARALLEL_HILL_CLIMBER:
             self.children[key] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID+=1
         self.Spawn()
-        # self.Mutate()
-        # self.child.Evaluate("DIRECT")
+        self.Mutate()
+        self.Evaluate(self.children)
+        exit()
         # print('\n',"parent fitness:",self.parent.fitness,"child fitness:",self.child.fitness)
         # self.Select()
 
@@ -42,8 +40,15 @@ class PARALLEL_HILL_CLIMBER:
         pass
 
     def Mutate(self):
-        self.child.Mutate()
+        for key in self.children.keys():
+            self.children[key].Mutate()
         
+    def Evaluate(self, solutions):
+        for i in range(c.populationSize):
+            solutions[i].Start_Simulation('DIRECT')
+        for i in range(c.populationSize):
+            solutions[i].Wait_For_Simulation_To_End()
+        pass
 
     def Select(self):      
         if(self.parent.fitness>self.child.fitness):
