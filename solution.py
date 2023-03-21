@@ -12,8 +12,6 @@ class SOLUTION:
         self.weights = self.weights * 2 - 1
         self.myId = nextAvailableID
         
-    #def Evaluate(self,directOrGUI):
-        
         
 
     def Start_Simulation(self, directOrGUI):
@@ -23,22 +21,15 @@ class SOLUTION:
         os.system("python3 simulate.py " + directOrGUI + " "+str(self.myId)+" &")
 
     def Wait_For_Simulation_To_End(self):
-        # fitnessFileName = 'fitness'+str(self.myId)+'.txt'
-        # while not os.path.exists(fitnessFileName):
-        #     time.sleep(0.01) 
-        # f = open(fitnessFileName,'r')
-        # print(fitnessFileName)
-        # self.fitness = float(f.read())
-        # #print(self.fitness)
-        # f.close()
-        # os.system('rm '+fitnessFileName)
-
-        while not os.path.exists("fitness" + str(self.myId) + ".txt"):
-            time.sleep(0.1)       
-        f = open("fitness" + str(self.myId) + ".txt", "r")
+        fitnessFileName = 'fitness'+str(self.myId)+'.txt'
+        while not os.path.exists(fitnessFileName):
+            time.sleep(0.01) 
+        f = open(fitnessFileName,'r')
+        print(fitnessFileName)
         self.fitness = float(f.read())
+        #print(self.fitness)
         f.close()
-        os.system("rm fitness" + str(self.myId) + ".txt")
+        os.system('rm '+fitnessFileName)
 
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
