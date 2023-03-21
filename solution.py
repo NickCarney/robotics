@@ -34,9 +34,7 @@ class SOLUTION:
         # os.system('rm '+fitnessFileName)
 
         while not os.path.exists("fitness" + str(self.myId) + ".txt"):
-
-            time.sleep(0.01)
-        
+            time.sleep(0.01)       
         f = open("fitness" + str(self.myId) + ".txt", "r")
         self.fitness = float(f.read())
         f.close()
