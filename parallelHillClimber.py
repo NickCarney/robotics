@@ -58,7 +58,7 @@ class PARALLEL_HILL_CLIMBER:
                 self.parents[i] = self.children[i]
 
     def Show_Best(self):
-        best = 1.0
+        best = 1
         for i in self.parents:
             if self.parents[i].fitness < best:
                 best = self.parents[i].fitness

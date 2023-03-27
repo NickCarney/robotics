@@ -1,6 +1,5 @@
 import numpy as np
 import pybullet as p
-numberOfGenerations = 10
 amplitude = np.pi/4
 frequency = 12
 offset = 0
@@ -17,7 +16,8 @@ x = 0.0
 y= 0.0
 z = 1.5
 
-populationSize = 10
+populationSize = 1
+numberOfGenerations = 1
 
 backLegAmplitude = np.pi/4
 backLegFrequency = 4
@@ -26,8 +26,6 @@ frontLegAmplitude = np.pi/2
 frontLegFrequency = 12
 frontLegPhaseOffset = np.pi/4
 maxForce = 50
-# backLegSensorValues = np.zeros(iterations)
-# frontLegSensorValues = np.zeros(iterations)
-#maxVal = amplitude * np.sin(frequency*iterations + phaseOffset)
-#blTargetAngles = blAmplitude*(np.sin((np.linspace(zero, 2*np.pi, iterations)*blFrequency)+blPhaseOffset))
-#flTargetAngles = flAmplitude*(np.sin((np.linspace(zero, 2*np.pi, iterations)*flFrequency)+flPhaseOffset))
+
+numMotorNeurons = 2
+numSensorNeurons = 3
