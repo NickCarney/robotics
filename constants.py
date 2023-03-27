@@ -14,7 +14,7 @@ width = 1
 height = 1
 x = 0.0
 y= 0.0
-z = 1.5
+z = 1
 
 populationSize = 1
 numberOfGenerations = 1
