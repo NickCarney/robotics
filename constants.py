@@ -27,5 +27,5 @@ frontLegFrequency = 12
 frontLegPhaseOffset = np.pi/4
 maxForce = 50
 
-numMotorNeurons = 2
-numSensorNeurons = 3
+numMotorNeurons = 4
+numSensorNeurons = 5
