@@ -16,8 +16,8 @@ x = 0.0
 y= 0.0
 z = 1
 
-populationSize = 1
-numberOfGenerations = 1
+populationSize = 5
+numberOfGenerations = 5
 
 backLegAmplitude = np.pi/4
 backLegFrequency = 4
@@ -27,5 +27,7 @@ frontLegFrequency = 12
 frontLegPhaseOffset = np.pi/4
 maxForce = 50
 
-numMotorNeurons = 4
-numSensorNeurons = 5
+numMotorNeurons = 8
+numSensorNeurons = 4
+
+motorJointRange = 1
