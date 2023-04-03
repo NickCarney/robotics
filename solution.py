@@ -59,10 +59,7 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = 10 , jointName = "Leftleg_LowerLeftleg")
         pyrosim.Send_Motor_Neuron( name = 11 , jointName = "Rightleg_LowerRightleg")
         
-        #pyrosim.Send_Synapse( sourceNeuronName = 0 , targetNeuronName = 3 , weight = -1.0 )
-        #pyrosim.Send_Synapse( sourceNeuronName = 1 , targetNeuronName = 3 , weight = -1.0 )
-        #pyrosim.Send_Synapse( sourceNeuronName=0, targetNeuronName=4, weight=-1.0 )
-        #pyrosim.Send_Synapse( sourceNeuronName=2, targetNeuronName=4, weight=-1.0 )
+
         
         for currentRow in range(c.numSensorNeurons):
             for currentColumn in range(c.numMotorNeurons):
