@@ -9,7 +9,7 @@ import os
 class ROBOT:
 
     def __init__(self,solutionID):
-        self.robotId = p.loadURDF("body.urdf")
+        self.robotId = p.loadURDF("body.urdf",basePosition=[0,0,c.verticalHeight])
         pyrosim.Prepare_To_Simulate(self.robotId)
         self.Prepare_To_Sense()
         self.Prepare_To_Act()

@@ -31,3 +31,6 @@ numMotorNeurons = 8
 numSensorNeurons = 4
 
 motorJointRange = 1
+
+#final project constants
+verticalHeight = 100
