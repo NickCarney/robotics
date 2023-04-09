@@ -18,9 +18,13 @@ class MOTOR:
         
         for i in range(1000):
             if self.jointName == "Torso_Frontleg":
-                self.motorValues = self.amplitude * numpy.sin(self.frequency * c.array + self.offset)
+                self.motorValues = self.amplitude * numpy.sin(.1*self.frequency * c.array + self.offset)
             elif self.jointName == "Torso_Backleg":
-                self.motorValues = self.amplitude * numpy.sin(0.5*self.frequency * c.array + self.offset)
+                self.motorValues = self.amplitude * numpy.sin(.1*self.frequency * c.array + self.offset)
+            elif self.jointName == "Torso_Leftleg":
+                self.motorValues = self.amplitude * numpy.sin(.1*self.frequency * c.array + self.offset)
+            elif self.jointName == "Torso_Rightleg":
+                self.motorValues = self.amplitude * numpy.sin(.1*self.frequency * c.array + self.offset)
                 
     def Set_Value(self, robot, desiredAngle):
         pyrosim.Set_Motor_For_Joint(

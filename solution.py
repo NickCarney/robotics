@@ -86,11 +86,15 @@ class SOLUTION:
         os.system("python3 simulate.py " + directOrGui + " " + str(self.ID) + " 2&>1 &")
         
     def Wait_For_Simulation_To_End(self):
-        while not os.path.exists("fitness" + str(self.ID) + ".txt"):
+        while (not os.path.exists("fitness" + str(self.ID) + ".txt")) or (not os.path.exists("fitnessy" + str(self.ID) + ".txt")):
 
             time.sleep(0.01)
         
         f = open("fitness" + str(self.ID) + ".txt", "r")
+        f2 = open("fitnessy"+ str(self.ID) + ".txt", "r")
         self.fitness = float(f.read())
+        self.fitnessy = float(f2.read())
         f.close()
+        f2.close()
         os.system("rm fitness" + str(self.ID) + ".txt")
+        os.system("rm fitnessy" + str(self.ID) + ".txt")

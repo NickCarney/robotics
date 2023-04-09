@@ -4,10 +4,10 @@ import constants as c
 class WORLD :
     def __init__(self):
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
-        camTargetPos = [0, 0, 100]
-        p.resetDebugVisualizerCamera( cameraDistance=5, cameraYaw=10, cameraPitch=330, cameraTargetPosition=camTargetPos)
-        for i in range(10):
-            self.planeId = p.loadURDF("plane.urdf", basePosition = [0,3*i,c.verticalHeight],globalScaling=.017)
+        camTargetPos = [0, 0, c.verticalHeight]
+        p.resetDebugVisualizerCamera( cameraDistance=5, cameraYaw=90, cameraPitch=320, cameraTargetPosition=camTargetPos)
+        for i in range(20):
+            self.planeId = p.loadURDF("plane.urdf", basePosition = [-3*(i-10),0,c.verticalHeight],globalScaling=.02)
             print(4*i)
 
         
