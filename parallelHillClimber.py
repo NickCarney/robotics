@@ -44,7 +44,7 @@ class PARALLEL_HILL_CLIMBER:
         
     def Evaluate(self, solutions):
         for x in solutions:
-            solutions[x].Start_Simulation2("DIRECT")
+            solutions[x].Start_Simulation("DIRECT")
         for x in solutions:
             solutions[x].Wait_For_Simulation_To_End()
 
@@ -55,7 +55,7 @@ class PARALLEL_HILL_CLIMBER:
                 self.parents[i] = self.children[i]
 
     def Show_Best(self):
-        best = 1
+        best = 10
         for i in self.parents:
             #if abs(self.parents[i].fitness) > abs(best) and (abs(self.children[i].fitnessy) < 2):
             if(self.parents[i].fitness < best and self.parents[i].fitnessy > 100):
