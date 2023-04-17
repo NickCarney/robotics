@@ -47,7 +47,7 @@ class ROBOT:
         stateOfLinkZero = p.getLinkState(self.robotId,0)
         positionOfLinkZero = stateOfLinkZero[0]
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        yCoordinateOfLinkZero = positionOfLinkZero[1]
+        yCoordinateOfLinkZero = positionOfLinkZero[2]
         f = open("tmp" + str(solutionID) + ".txt", "w")
         f2 = open("tmp2" + str(solutionID) + ".txt", "w")
         f.write(str(xCoordinateOfLinkZero))
