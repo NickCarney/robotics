@@ -12,5 +12,7 @@ for i in range(c.numberOfGenerations):
     averagesB[i] = np.mean(variantB[i,:])
 plt.plot(averagesA, label = 'A', linewidth = 2)
 plt.plot(averagesB, label = 'B', linewidth = 7)
+plt.xlabel("Num Generations")
+plt.ylabel("Fitness values")
 plt.legend(loc = 'best')
 plt.show()
