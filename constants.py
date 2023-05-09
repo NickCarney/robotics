@@ -16,8 +16,8 @@ x = 0.0
 y= 0.0
 z = 1
 
-populationSize = 200
-numberOfGenerations = 200
+populationSize = 50
+numberOfGenerations = 15
 
 backLegAmplitude = np.pi/4
 backLegFrequency = 4

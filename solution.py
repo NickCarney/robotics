@@ -11,6 +11,7 @@ class SOLUTION:
         self.ID = ID        
         self.weights = numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons)
         self.weights = self.weights * 2 - 1
+        AVar = True #when true, will run the A variant
         
     def Evaluate(self, directOrGui):
         pass

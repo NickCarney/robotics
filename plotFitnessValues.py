@@ -1,18 +1,26 @@
+
 import numpy as np
 import matplotlib.pyplot as plt
-import constants as c
-variantA = np.load('totalFitnessData.npy')
-variantB = np.load('totalFitnessData2.npy')
-averagesA = [0]*c.numberOfGenerations
-averagesB = [0]*c.numberOfGenerations
-for i in range(c.numberOfGenerations):
-    #aRow = plt.plot(variantA[i,:], label = 'A'+str(i), linewidth = 2)
-    averagesA[i] = np.mean(variantA[i,:])
-    #bRow = plt.plot(variantB[i,:],label = 'B'+str(i), linewidth = 7)
-    averagesB[i] = np.mean(variantB[i,:])
-plt.plot(averagesA, label = 'A', linewidth = 2)
-plt.plot(averagesB, label = 'B', linewidth = 7)
-plt.xlabel("Num Generations")
-plt.ylabel("Fitness values")
-plt.legend(loc = 'best')
+
+# Load the matrices
+matrix_A = np.load('totalFitnessData.npy')
+matrix_B = np.load('totalFitnessData2.npy')
+
+# Calculate the column means
+means_A = np.mean(matrix_A, axis=0)
+means_B = np.mean(matrix_B, axis=0)
+
+# Create the x-axis
+x_axis = np.arange(matrix_A.shape[1])
+
+# Create the plot
+plt.plot(x_axis, means_A, label='Matrix A')
+plt.plot(x_axis, means_B, label='Matrix B',linewidth = 4)
+
+# Add axis labels and legend
+plt.xlabel('Generation Index')
+plt.ylabel('Fitness Value')
+plt.legend()
+
+# Display the plot
 plt.show()

@@ -14,6 +14,7 @@ class PARALLEL_HILL_CLIMBER:
         self.count = 0  
         self.allFit = np.zeros((c.populationSize,c.numberOfGenerations))
         self.allFit2 = np.zeros((c.populationSize,c.numberOfGenerations))
+        self.AVar = False #when true, A variant runs
         for i in range(c.populationSize):
             self.parents[i] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID+=1
@@ -51,14 +52,17 @@ class PARALLEL_HILL_CLIMBER:
         
     def Evaluate(self, solutions):
         for x in solutions:
-            solutions[x].Start_Simulation("DIRECT")
+            if(self.AVar):
+                solutions[x].Start_Simulation("DIRECT")
+            else:
+                solutions[x].Start_Simulation2("DIRECT")
         for x in solutions:
             solutions[x].Wait_For_Simulation_To_End()
     def Select(self): 
         self.count = 0   
         for i in self.parents:
             if(self.count<c.populationSize):
-                self.allFit[self.count][self.generation] = self.children[i].fitness
+                self.allFit[self.count][self.generation] = self.parents[i].fitness
             #if abs(self.parents[i].fitness) < abs(self.children[i].fitness) and (abs(self.children[i].fitnessy) < 2):
             if(self.parents[i].fitness > self.children[i].fitness and self.children[i].fitnessy >=c.verticalHeight):
                 self.parents[i] = self.children[i]
@@ -72,9 +76,16 @@ class PARALLEL_HILL_CLIMBER:
                 best = self.parents[i].fitness
                 best_key = i
         print('Best fitness obtained:',self.parents[best_key].fitness)
-        np.savetxt('totalFitnessData.txt',self.allFit)
-        np.save('totalFitnessData.npy',self.allFit)
-        self.parents[best_key].Start_Simulation("GUI")
+        if(self.AVar):
+            np.savetxt('totalFitnessData.txt',self.allFit)
+            np.save('totalFitnessData.npy',self.allFit)
+        else:
+            np.savetxt('totalFitnessData2.txt',self.allFit)
+            np.save('totalFitnessData2.npy',self.allFit)
+        if(self.AVar):
+            self.parents[best_key].Start_Simulation("GUI")
+        else:
+            self.parents[best_key].Start_Simulation2("GUI")
 
     def Print(self):
         for i in self.parents.keys():
